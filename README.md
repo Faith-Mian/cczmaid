@@ -16,4 +16,4 @@
 
 ---
 
-## 下载地址见[Release](\cczmaid.exe)
+## 下载地址见[Release](https://github.com/Faith-Mian/cczmaid/releases)
