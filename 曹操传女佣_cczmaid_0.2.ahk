@@ -72,7 +72,65 @@ return
 GroupAdd, ccz32770, ahk_exe Ekd5.exe ahk_class #32770 
 GroupAdd, ccz32770, ahk_exe jiangwei.exe ahk_class #32770 ;姜维传改主程序特殊
 
-#ifwinactive ahk_class #32770
+#ifwinactive ahk_exe Ekd5.exe 
+
+
+d::click												;V0.2连点器2
+
+~esc::
+controlclick, 取消, ahk_class #32770, , l, 1, na
+controlclick, 结束, ahk_class #32770, , l, 1, na 
+controlclick, 否, ahk_class #32770, , l, 1, na
+controlclick, 旧档界面, ahk_class #32770, ,l , 1, na
+controlclick, 确定, ahk_class #32770, ,l , 1,na 					;TODO 测试效果
+controlclick, 确认, ahk_class #32770, ,l , 1,na 					;TODO 测试效果
+return
+
+
+~wheelup::
+;x::
+controlclick, 上一页, 保存进度, ,l , 1,na 				
+controlclick, 上一页, 读取进度, ,l , 1,na 						;V0.2 controlclick, 上一页, ahk_class #32770, ,l , 1,na 装备滑动翻页冲突，改为右键滑动武将翻页，加上~和保存进度窗口限制解决（或ifwinactive？）
+return
+~wheeldown::
+;c::
+controlclick, 下一页, 保存进度, ,l , 1,na 				
+controlclick, 下一页, 读取进度, ,l , 1,na 				
+return
+
+
+~$rbutton::														;V0.2 内部调用自身优化$rbutton~ >>>> 不改变原键功能 ~$rbutton
+;w::
+keywait, rbutton,,T0.1
+if errorlevel
+{
+	~rbutton & wheelup:: 									;V0.1 右键滚轮完成
+	controlclick, 上一百页, ahk_class #32770, ,l , 1,na
+	controlclick, 上一武将, ahk_class #32770, ,l , 1,na
+	return
+
+	~rbutton & wheeldown:: 										 
+	controlclick, 下一百页, ahk_class #32770, ,l , 1,na
+	controlclick, 下一武将, ahk_class #32770, ,l , 1,na
+	return
+}
+controlclick, 取消, ahk_class #32770, ,l , 1,na
+;controlclick, 结束, ahk_class #32770, ,l , 1,na				;V0.2 导致装备界面不便查看装备详情,可以考虑esc关闭项更多些，如果不注释掉则必须右键弹起才能查看装备详情
+controlclick, 否, ahk_class #32770, ,l , 1,na
+controlclick, 旧档界面, ahk_class #32770, ,l , 1,na
+controlclick, 确定, ahk_class #32770, ,l , 1,na 					;TODO 测试效果
+controlclick, 确认, ahk_class #32770, ,l , 1,na 					;TODO 测试效果
+return
+
+~mbutton::
+click 											;;; MIND SLIDING CURSOR
+sleep 111
+controlclick, 是, ahk_class #32770, ,l , 1,na ;;;; ★★★
+sleep 111
+controlclick, OK, ahk_class #32770, ,l , 1,na ;;;; ★★★
+return
+
+#ifwinactive ahk_exe jiangwei.exe
 
 d::click												;V0.2连点器2
 
